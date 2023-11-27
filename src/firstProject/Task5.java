@@ -26,7 +26,7 @@ public class Task5 {
             }
         }while(check);
 
-        if(number >= 1 && number <= 2 || number == 12){
+        if((number >= 1 && number <= 2) || number == 12){
             System.out.println("зима");
         }
         if(number >= 3 && number <= 5 ){
