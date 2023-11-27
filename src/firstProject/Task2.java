@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 public class Task2 {
 
     public static void main(String[] args) {
-        System.out.println("введите число");
+        System.out.println("введите число из которого хотите вычислить процент");
 
         Scanner scanner = new Scanner(System.in);
         int number= scanner.nextInt();
