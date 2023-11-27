@@ -21,7 +21,7 @@ public class Task12 {
 
         Scanner scanner = new Scanner(System.in);
         boolean check = true;
-        int choise = 0;
+        int choise;
 
         do{
             if (scanner.hasNextInt()) {
@@ -45,7 +45,7 @@ public class Task12 {
                         Arrays.sort(arrayFirst);
                         int[] arraySecond = new int[size];
                         int j=0;
-                        for (int i = arrayFirst.length-1; i > 0; i--) {
+                        for (int i = arrayFirst.length-1; i >= 0; i--) {
                             arraySecond[j] =arrayFirst[i];
                             j++;
                         }
