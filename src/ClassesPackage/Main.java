@@ -63,5 +63,14 @@ public class Main {
         country.deleteCity("Варшава");
         country.print();
 
+        City city=new City();
+        city.setCityName("Гайсин");
+        city.setCountryName("Украина");
+        city.setRegionName("Винницкая");
+        city.setPhoneCode("(4334)");
+        city.setPostCode("23700");
+        city.setNumberOfPeople("26 627");
+
+        city.print();
     }
 }

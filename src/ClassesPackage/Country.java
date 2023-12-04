@@ -11,11 +11,6 @@ public class Country {
     private String numberOfCitizen ="";
     private List<String> cities = new ArrayList<>();
     public Country(){ }
-
-    public String getPhoneCode() {
-        return phoneCode;
-    }
-
     public Country(String country, String continent, String capital, String number, String phoneCode){
         countryName=country;
         continentName=continent;
@@ -55,6 +50,10 @@ public class Country {
 
     public String getNumberOfCitizen() {
         return numberOfCitizen;
+    }
+
+    public String getPhoneCode() {
+        return phoneCode;
     }
 
     public List<String> getCities() {
