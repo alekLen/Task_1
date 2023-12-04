@@ -1,8 +1,8 @@
 package ClassesPackage;
 
 public class Fraction {
-    public int numerator;
-    public int denomirator;
+    private int numerator;
+    private int denomirator;
 
     public Fraction(int numerator, int denomirator) {
         if(denomirator!=0){

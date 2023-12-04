@@ -28,5 +28,21 @@ public class Main {
         Fraction f8=new Fraction(0);
         Fraction f9=Fraction.devisionFractions(f2,f8);
         System.out.println(f2 + " / " + f8 + " = " + f9);
+
+        Fraction f11=new Fraction(1,2);
+        Fraction f12=Fraction.devisionFractions(f2,f11);
+        System.out.println(f2 + " / " + f11 + " = " + f12);
+
+        Person person1=new Person("Иванов",25);
+        System.out.println(person1);
+        person1.printPerson();
+
+        person1.setCountry("Украина");
+        person1.setCity("Винница");
+        person1.setAddress("Соборная,178");
+        person1.printPerson();
+
+        Person person2=new Person("Петров",35,"Украина","Киев","бульвар Шевченка, 122");
+        person2.printPerson();
     }
 }
