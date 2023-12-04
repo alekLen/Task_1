@@ -44,5 +44,24 @@ public class Main {
 
         Person person2=new Person("Петров",35,"Украина","Киев","бульвар Шевченка, 122");
         person2.printPerson();
+
+        Country country=new Country("Украина");
+        country.setContinentName("Евразия");
+        country.setCapital("Киев");
+        country.setPhoneCode("+380");
+        country.addCity("Винница");
+        country.addCity("Львов");
+        country.addCity("Харьков");
+        country.addCity("Варшава");
+        country.addCity("Одесса");
+        country.addCity("Херсон");
+        country.addCity("Житомир");
+        country.setNumberOfCitizen("43.79 млн");
+
+        country.print();
+
+        country.deleteCity("Варшава");
+        country.print();
+
     }
 }
