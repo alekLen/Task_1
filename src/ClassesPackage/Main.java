@@ -72,5 +72,15 @@ public class Main {
         city.setNumberOfPeople("26 627");
 
         city.print();
+
+        Book book = new Book();
+        book.setName("Ночь в Лиссабоне");
+        book.setAutor("Эрих Мария Ремарк");
+        book.setYear(1992);
+        book.setGenre("роман");
+        book.setProduction("Клуб семейного досуга");
+        book.setPictures(574);
+
+        book.print();
     }
 }
