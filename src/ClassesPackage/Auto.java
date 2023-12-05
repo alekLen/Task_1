@@ -1,5 +1,8 @@
 package ClassesPackage;
 
+import java.time.Year;
+import java.util.Scanner;
+
 public class Auto {
     private String name = "";
     private String production = "";
@@ -18,14 +21,14 @@ public class Auto {
     public Auto(String name, String production, int year) {
         this.name = name;
         this.production = production;
-        this.year = year;
+        setYear(year);
     }
 
     public Auto(String name, String production, int year, int volume) {
         this.name = name;
         this.production = production;
-        this.year = year;
-        this.volume = volume;
+        setYear(year);
+        setVolume(volume);
     }
 
     public Auto() {
@@ -40,11 +43,19 @@ public class Auto {
     }
 
     public void setYear(int year) {
-        this.year = year;
+        if(year > 0 && year <= Year.now().getValue()) {
+            this.year = year;
+        } else{
+            this.year = 0;
+        }
     }
 
     public void setVolume(int volume) {
-        this.volume = volume;
+       if(volume>1000 ){
+           this.volume=volume;
+       } else{
+           this.volume=0;
+       }
     }
 
     public String getName() {
@@ -58,11 +69,67 @@ public class Auto {
     public int getYear() {
         return year;
     }
-
     public int getVolume() {
         return volume;
     }
 
+    public void putData(String name, String production, int year, int volume) {
+        this.name = name;
+        this.production = production;
+        setYear(year);
+       setVolume(volume);
+    }
+    public void putData(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Введите модель машины:");
+        name=scanner.nextLine();
+
+        System.out.println("Введите название производителя:");
+        production = scanner.nextLine();
+
+        putYear(scanner);
+        putVolume(scanner);
+
+    }
+    private void putYear(Scanner scanner){
+        System.out.println("Введите год выпуска машины:");
+        boolean check=true;
+        do{
+            if (scanner.hasNextInt()) {
+                int number = scanner.nextInt();
+                if(number > 0 && number <= Year.now().getValue()){
+                    year = number;
+                    check = false;
+                }else{
+                    System.out.println("Некорректный год");
+                    scanner.nextLine();
+                }
+            }  else{
+                System.out.println("Некорректный год");
+                scanner.next();
+            }
+        }while(check);
+    }
+    private void putVolume(Scanner scanner){
+        System.out.println("Введите объем двигателя:");
+        boolean check2=true;
+        do{
+            if (scanner.hasNextInt()) {
+                int number = scanner.nextInt();
+                if(number > 1000 ){
+                    volume=number;
+                    check2 = false;
+                }else{
+                    System.out.println("Некорректное число");
+                    scanner.nextLine();
+                }
+            }  else{
+                System.out.println("Некорректное число");
+                scanner.next();
+            }
+        }while(check2);
+    }
     @Override
     public String toString() {
         return "Auto{" +
@@ -98,5 +165,9 @@ public class Auto {
         auto.setVolume(1590);
 
         auto.print();
+
+        Auto auto2 = new Auto();
+        auto2.putData();
+        auto2.print();
     }
 }

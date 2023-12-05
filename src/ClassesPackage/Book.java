@@ -114,9 +114,9 @@ public class Book {
                 if(number > 0 && number <= Year.now().getValue()){
                     year = number;
                     check = false;
-                }else{
+                }  else{
                     System.out.println("Некорректный год");
-                    scanner.next();
+                    scanner.nextLine();
                 }
             }  else{
                 System.out.println("Некорректный год");
@@ -133,9 +133,9 @@ public class Book {
                 if(number>0){
                     pictures=number;
                     check2 = false;
-                }else{
+                }  else{
                     System.out.println("Некорректное число");
-                    scanner.next();
+                    scanner.nextLine();
                 }
             }  else{
                 System.out.println("Некорректное число");
