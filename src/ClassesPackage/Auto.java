@@ -89,4 +89,14 @@ public class Auto {
 
         System.out.println(outStr);
     }
+
+    public static void main(String[] args) {
+        Auto auto=new Auto();
+        auto.setName("Жук");
+        auto.setProduction("Ниссан");
+        auto.setYear(2014);
+        auto.setVolume(1590);
+
+        auto.print();
+    }
 }

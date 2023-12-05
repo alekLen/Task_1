@@ -100,6 +100,9 @@ public class Person {
                 if(number>0 && number<99){
                     age=number;
                     check = false;
+                }else{
+                    System.out.println("Не корректный возраст");
+                    scanner.next();
                 }
             }  else{
                 System.out.println("Не корректный возраст");
@@ -133,4 +136,25 @@ public class Person {
         }
     }
 
+    public static void main(String[] args) {
+        Person person1=new Person("Иванов",25);
+        System.out.println(person1);
+        person1.printPerson();
+
+        person1.setCountry("Украина");
+        person1.setCity("Винница");
+        person1.setAddress("Соборная,178");
+        person1.printPerson();
+
+        Person person2=new Person("Петров",35,"Украина","Киев","бульвар Шевченка, 122");
+        person2.printPerson();
+
+        Person person3=new Person();
+        person3.putData();
+        person3.printPerson();
+
+        Person person4=new Person();
+        person4.putData("Сокол",35,"Украина","Полтава","ул. Шевченка, 12");
+        person4.printPerson();
+    }
 }

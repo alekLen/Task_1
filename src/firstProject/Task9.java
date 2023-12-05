@@ -19,7 +19,7 @@ public class Task9 {
         }
         System.out.println("\n");
 
-        int number=0;
+        int number=arrayFirst[0];
         for (int i : arrayFirst) {
             if (number > i) {
                 number = i;
@@ -27,6 +27,7 @@ public class Task9 {
         }
         System.out.println("Минимальное значение массива:  "+ number);
 
+        number=arrayFirst[0];
         for (int i : arrayFirst) {
             if (number < i) {
                 number = i;

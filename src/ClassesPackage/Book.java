@@ -120,4 +120,16 @@ public class Book {
 
         System.out.println(outStr);
     }
+
+    public static void main(String[] args) {
+        Book book = new Book();
+        book.setName("Ночь в Лиссабоне");
+        book.setAutor("Эрих Мария Ремарк");
+        book.setYear(1992);
+        book.setGenre("роман");
+        book.setProduction("Клуб семейного досуга");
+        book.setPictures(574);
+
+        book.print();
+    }
 }

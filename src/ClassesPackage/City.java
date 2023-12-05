@@ -1,5 +1,7 @@
 package ClassesPackage;
 
+import java.util.Scanner;
+
 public class City {
     private String cityName ="";
     private String countryName ="";
@@ -72,6 +74,35 @@ public class City {
         return phoneCode;
     }
 
+    public void putData(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Введите название города:");
+        cityName=scanner.nextLine();
+
+        System.out.println("Введите название области:");
+        regionName=scanner.nextLine();
+
+        System.out.println("Введите название страны:");
+        countryName=scanner.nextLine();
+
+        System.out.println("Введите численность населения города:");
+        numberOfPeople = scanner.nextLine();
+
+        System.out.println("Введите почтовый индекс:");
+        postCode=scanner.nextLine();
+
+        System.out.println("Введите телефонный код города:");
+        phoneCode = scanner.nextLine();
+    }
+    public void putData(String cityName, String countryName, String regionName, String numberOfPeople, String postCode, String phoneCode){
+        this.cityName = cityName;
+        this.countryName = countryName;
+        this.regionName = regionName;
+        this.numberOfPeople = numberOfPeople;
+        this.postCode = postCode;
+        this.phoneCode = phoneCode;
+    }
     @Override
     public String toString() {
         return "City{" +
@@ -106,4 +137,23 @@ public class City {
 
          System.out.println(outStr);
      }
+
+    public static void main(String[] args) {
+        City city=new City();
+        city.setCityName("Гайсин");
+        city.setCountryName("Украина");
+        city.setRegionName("Винницкая");
+        city.setPhoneCode("(4334)");
+        city.setPostCode("23700");
+        city.setNumberOfPeople("26 627");
+        city.print();
+
+        City city1=new City();
+        city1.putData("Чернигов","Украина","Черниговская","291 тыс","14500","(462))");
+        city1.print();
+
+        City city2=new City();
+        city2.putData();
+        city2.print();
+    }
 }

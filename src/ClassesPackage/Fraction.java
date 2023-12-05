@@ -144,4 +144,41 @@ public class Fraction {
         }
     }
 
+    public static void main(String[] args) {
+        Fraction f1 = new Fraction(7, 9);
+        Fraction f2 = new Fraction(3, 4);
+
+        Fraction f3 = Fraction.summFractions(f1, f2);
+        System.out.println(f1 + " + " + f2 + " = " + f3);
+
+        f1.putNumerator(9);
+        f1.putDenominator(0);
+        f1.printFraction();
+        System.out.println();
+
+        Fraction f4 = Fraction.substractFractions(f1, f2);
+        System.out.println(f1 + " - " + f2 + " = " + f4);
+
+
+        Fraction f5 = Fraction.substractFractions(f2, f1);
+        System.out.println(f2 + " - " + f1 + " = " + f5);
+
+        Fraction f6 = Fraction.multiplicatFractions(f2, f1);
+        System.out.println(f2 + " * " + f1 + " = " + f6);
+
+        Fraction f7 = Fraction.devisionFractions(f2, f1);
+        System.out.println(f2 + " / " + f1 + " = " + f7);
+
+        Fraction f10 = Fraction.devisionFractions(f1, f2);
+        System.out.println(f1 + " / " + f2 + " = " + f10);
+
+        Fraction f8 = new Fraction(0);
+        Fraction f9 = Fraction.devisionFractions(f2, f8);
+        System.out.println(f2 + " / " + f8 + " = " + f9);
+
+        Fraction f11 = new Fraction(1, 2);
+        Fraction f12 = Fraction.devisionFractions(f2, f11);
+        System.out.println(f2 + " / " + f11 + " = " + f12);
+    }
+
 }
