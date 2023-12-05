@@ -1,5 +1,7 @@
 package ClassesPackage;
 
+import java.util.Scanner;
+
 public class Person {
     private String nameSurname="";
     private int age=0;
@@ -57,7 +59,11 @@ public class Person {
     }
 
     public void setAge(int age) {
-        this.age = age;
+       if(age>0 && age <=99) {
+           this.age = age;
+       } else {
+           this.age = 0;
+       }
     }
 
     public void setCountry(String country) {
@@ -71,18 +77,60 @@ public class Person {
     public void setAddress(String address) {
         this.address = address;
     }
-    public void printPerson(){
-        String outString= "ФИО: " + getNameSurname() + "\n" + "Возраст: " + getAge() + "\n";
-        if( !this.country.isEmpty()){
-            outString += "Страна: " + getCountry() + "\n";
+    public void putData(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Введите ФИО:");
+        nameSurname=scanner.nextLine();
+
+        System.out.println("Введите страну проживания:");
+        country=scanner.nextLine();
+
+        System.out.println("Введите город проживания:");
+        city=scanner.nextLine();
+
+        System.out.println("Введите адрес:");
+        address = scanner.nextLine();
+
+        System.out.println("Введите возраст:");
+        boolean check=true;
+        do{
+            if (scanner.hasNextInt()) {
+                int number = scanner.nextInt();
+                if(number>0 && number<99){
+                    age=number;
+                    check = false;
+                }
+            }  else{
+                System.out.println("Не корректный возраст");
+                scanner.next();
+            }
+        }while(check);
+    }
+    public void putData(String name,int age, String country, String city, String address){
+        nameSurname = name;
+        this.age = age;
+        this.country = country;
+        this.city = city;
+        this.address = address;
+    }
+    public void printPerson() {
+        if (!nameSurname.isEmpty()) {
+            String outString = "ФИО: " + nameSurname + "\n";
+            if (age != 0) {
+                outString += "Возраст: " + age + "\n";
+            }
+            if (!country.isEmpty()) {
+                outString += "Страна: " + country + "\n";
+            }
+            if (!city.isEmpty()) {
+                outString += "Город: " + city + "\n";
+            }
+            if (!address.isEmpty()) {
+                outString += "Адрес: " + address + "\n";
+            }
+            System.out.println(outString);
         }
-        if( !this.city.isEmpty()){
-            outString += "Город: " + getCity() + "\n";
-        }
-        if( !this.address.isEmpty()){
-            outString += "Адрес: " + getAddress() + "\n";
-        }
-        System.out.println(outString);
     }
 
 }

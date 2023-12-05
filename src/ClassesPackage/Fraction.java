@@ -11,8 +11,8 @@ public class Fraction {
         }
         else{
             System.out.println("Некорректные данные: нельзя делить на ноль!");
+            this.denomirator = 1;
             System.out.println("Установлен знаменатель по умолчанию, равный 1!");
-            this.denomirator =1;
             this.numerator = numerator;
         }
     }
@@ -34,7 +34,68 @@ public class Fraction {
     }
 
     public void setDenomirator(int denomirator) {
-        this.denomirator = denomirator;
+        if(denomirator!=0){
+            this.denomirator = denomirator;
+        }
+        else{
+            System.out.println("Некорректные данные: нельзя делить на ноль!");
+            this.denomirator = 1;
+            System.out.println("Установлен знаменатель по умолчанию, равный 1!");
+        }
+    }
+
+   public static Fraction summFractions(Fraction a,Fraction b){
+        int number1=a.numerator;
+        int number2=b.numerator;
+        int number3=a.denomirator;
+        int number4=b.denomirator;
+
+        int newNumerator=number1 * number4 + number2 * number3;
+        int newDenominator=number3 * number4;
+
+        int genDevis=genericDevisor(newNumerator, newDenominator);
+
+        return new Fraction(newNumerator/genDevis,newDenominator/genDevis);
+   }
+    public static Fraction substractFractions(Fraction a,Fraction b){
+        int number1=a.numerator;
+        int number2=b.numerator;
+        int number3=a.denomirator;
+        int number4=b.denomirator;
+
+        int newNumerator=number1 * number4 - number2 * number3;
+        int newDenominator=number3 * number4;
+
+        int genDevis=genericDevisor(newNumerator, newDenominator);
+
+        return new Fraction(newNumerator/genDevis,newDenominator/genDevis);
+    }
+    public static Fraction multiplicatFractions(Fraction a,Fraction b){
+        int newNumerator=a.numerator * b.numerator;
+        int newDenominator=a.denomirator * b.denomirator;
+
+        int genDevis=genericDevisor(newNumerator, newDenominator);
+
+        return new Fraction(newNumerator/genDevis,newDenominator/genDevis);
+    }
+    public static Fraction devisionFractions(Fraction a,Fraction b){
+        int number1=a.numerator;
+        int number2 = 1;
+        if(b.numerator != 0) {
+             number2 = b.numerator;
+        }else{
+            System.out.println("Некорректные данные: нельзя делить на ноль!");
+            b.numerator = 1;
+            System.out.println("Установлен числитель второй дроби по умолчанию, равный 1!");
+        }
+        int number3=a.denomirator;
+        int number4=b.denomirator;
+        int newNumerator=number1 *number4;
+        int newDenominator=number3 * number2;
+
+        int genDevis=genericDevisor(newNumerator, newDenominator);
+
+        return new Fraction(newNumerator/genDevis,newDenominator/genDevis);
     }
     private static int genericDevisor(int a, int b) {
         if(a < 0) {
@@ -47,58 +108,20 @@ public class Fraction {
         }
         return a;
     }
-   public static Fraction summFractions(Fraction a,Fraction b){
-        int number1=a.getNumerator();
-        int number2=b.getNumerator();
-        int number3=a.getDenomirator();
-        int number4=b.getDenomirator();
-
-        int newNumerator=number1 * number4 + number2 * number3;
-        int newDenominator=number3 * number4;
-
-        int genDevis=genericDevisor(newNumerator, newDenominator);
-
-        return new Fraction(newNumerator/genDevis,newDenominator/genDevis);
-   }
-    public static Fraction substractFractions(Fraction a,Fraction b){
-        int number1=a.getNumerator();
-        int number2=b.getNumerator();
-        int number3=a.getDenomirator();
-        int number4=b.getDenomirator();
-
-        int newNumerator=number1 * number4 - number2 * number3;
-        int newDenominator=number3 * number4;
-
-        int genDevis=genericDevisor(newNumerator, newDenominator);
-
-        return new Fraction(newNumerator/genDevis,newDenominator/genDevis);
+    public   void putNumerator(int number){
+        numerator= number;
     }
-    public static Fraction multiplicatFractions(Fraction a,Fraction b){
-        int newNumerator=a.getNumerator() * b.getNumerator();
-        int newDenominator=a.getDenomirator() * b.getDenomirator();
-
-        int genDevis=genericDevisor(newNumerator, newDenominator);
-
-        return new Fraction(newNumerator/genDevis,newDenominator/genDevis);
-    }
-    public static Fraction devisionFractions(Fraction a,Fraction b){
-        int number1=a.getNumerator();
-        int number2 = 1;
-        if(b.getNumerator() != 0) {
-             number2 = b.getNumerator();
-        }else{
+    public   void putDenominator(int number){
+        if(number!=0){
+            denomirator = number;
+        } else{
             System.out.println("Некорректные данные: нельзя делить на ноль!");
-            System.out.println("Установлен числитель второй дроби по умолчанию, равный 1!");
-            b.setNumerator(1);
+            denomirator = 1;
+            System.out.println("Установлен знаменатель по умолчанию, равный 1!");
         }
-        int number3=a.getDenomirator();
-        int number4=b.getDenomirator();
-        int newNumerator=number1 *number4;
-        int newDenominator=number3 * number2;
-
-        int genDevis=genericDevisor(newNumerator, newDenominator);
-
-        return new Fraction(newNumerator/genDevis,newDenominator/genDevis);
+    }
+    public void printFraction(){
+        System.out.print(this);
     }
     @Override
     public String toString() {
@@ -114,12 +137,10 @@ public class Fraction {
                 if(numerator < 0){
                     newNumerator *= -1;
                 }
-                return whole + " " + newNumerator +
-                        "/" + denomirator;
+                return whole + " " + newNumerator + "/" + denomirator;
             }
         } else {
-            return numerator +
-                    "/" + denomirator;
+            return numerator + "/" + denomirator;
         }
     }
 

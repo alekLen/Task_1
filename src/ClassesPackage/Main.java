@@ -2,12 +2,16 @@ package ClassesPackage;
 
 public class Main {
     public static void main(String[] args) {
-        Fraction f1=new Fraction(9,0);
+        Fraction f1=new Fraction(7,9);
         Fraction f2=new Fraction(3,4);
 
         Fraction f3=Fraction.summFractions(f1,f2);
         System.out.println(f1 + " + " + f2 + " = " + f3);
 
+        f1.putNumerator(9);
+        f1.putDenominator(0);
+        f1.printFraction();
+        System.out.println();
 
         Fraction f4=Fraction.substractFractions(f1,f2);
         System.out.println(f1 + " - " + f2 + " = " + f4);
@@ -44,6 +48,14 @@ public class Main {
 
         Person person2=new Person("Петров",35,"Украина","Киев","бульвар Шевченка, 122");
         person2.printPerson();
+
+        Person person3=new Person();
+        person3.putData();
+        person3.printPerson();
+
+        Person person4=new Person();
+        person4.putData("Сокол",35,"Украина","Полтава","ул. Шевченка, 12");
+        person4.printPerson();
 
         Country country=new Country("Украина");
         country.setContinentName("Евразия");

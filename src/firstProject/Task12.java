@@ -4,7 +4,8 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Task12 {
+public class 
+        Task12 {
     public static void main(String[] args) {
 
         int size = 10;
