@@ -36,20 +36,38 @@ public class Main {
 //        m.downPrice(4.875);
 //        m.print();
 
-        System.out.println("---------------");
-        List<Facility> list= new ArrayList<Facility>();
-        Kettle kettle=new Kettle("Bosh","bs3000","1.8l","1200v");
-        list.add(kettle);
-        Auto auto=new Auto("VW","Toureg","универсал","3.0 V6 TDI");
-        list.add(auto);
-        Microwave micro =new Microwave("Sumsung","s200kn","30.l","1800v");
-        list.add(micro);
-       Ship ship = new Ship("Katerina",280);
-       list.add(ship);
-        for(var l:list){
+//        System.out.println("********************");
+//        List<Facility> list= new ArrayList<Facility>();
+//        Kettle kettle=new Kettle("Bosh","bs3000","1.8l","1200v");
+//        list.add(kettle);
+//        Auto auto=new Auto("VW","Toureg","универсал","3.0 V6 TDI");
+//        list.add(auto);
+//        Microwave micro =new Microwave("Sumsung","s200kn","30.l","1800v");
+//        list.add(micro);
+//       Ship ship = new Ship("Katerina",280);
+//       list.add(ship);
+//        for(var l:list){
+//            l.show();
+//            l.sound();
+//            l.desc();
+//            System.out.println("-------");
+//        }
+
+        System.out.println("************************");
+        List<MusInstruments> list2= new ArrayList<MusInstruments>();
+        Violin violin= new Violin("Скрипка","31.75 - 35,5 см");
+        list2.add(violin);
+        Cello cello= new Cello("Виолончель","51.0 - 69.5 см");
+        list2.add(cello);
+        Ukulele ukulele= new Ukulele("Укулеле","33.0 - 53 см");
+        list2.add(ukulele);
+        Trombone trombone = new Trombone("Тромбон"," 94x31x29 см");
+       list2.add(trombone);
+        for(var l:list2) {
             l.show();
-            l.sound();
             l.desc();
+            l.sound();
+            l.history();
             System.out.println("-------");
         }
     }
