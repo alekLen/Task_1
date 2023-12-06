@@ -29,11 +29,28 @@ public class Main {
 //            l.print();
 //        }
 
-        Product m=new Product("книга",3,30) ;
-        m.print();
-        m.upPrice(2.80);
-        m.print();
-        m.downPrice(4.875);
-        m.print();
+//        Product m=new Product("книга",3,30) ;
+//        m.print();
+//        m.upPrice(2.80);
+//        m.print();
+//        m.downPrice(4.875);
+//        m.print();
+
+        System.out.println("---------------");
+        List<Facility> list= new ArrayList<Facility>();
+        Kettle kettle=new Kettle("Bosh","bs3000","1.8l","1200v");
+        list.add(kettle);
+        Auto auto=new Auto("VW","Toureg","универсал","3.0 V6 TDI");
+        list.add(auto);
+        Microwave micro =new Microwave("Sumsung","s200kn","30.l","1800v");
+        list.add(micro);
+       Ship ship = new Ship("Katerina",280);
+       list.add(ship);
+        for(var l:list){
+            l.show();
+            l.sound();
+            l.desc();
+            System.out.println("-------");
+        }
     }
 }

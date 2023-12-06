@@ -36,10 +36,6 @@ public  class Money {
             this.cents = n1;
             n1 = cents / 100;
             this.dollars += n1;
-        } else if(cents<0){
-            this.cents =0;
-        } else{
-            this.cents = cents;
-        }
+        } else this.cents = Math.max(cents, 0);
     }
 }
