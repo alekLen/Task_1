@@ -53,22 +53,33 @@ public class Main {
 //            System.out.println("-------");
 //        }
 
-        System.out.println("************************");
-        List<MusInstruments> list2= new ArrayList<MusInstruments>();
-        Violin violin= new Violin("Скрипка","31.75 - 35,5 см");
-        list2.add(violin);
-        Cello cello= new Cello("Виолончель","51.0 - 69.5 см");
-        list2.add(cello);
-        Ukulele ukulele= new Ukulele("Укулеле","33.0 - 53 см");
-        list2.add(ukulele);
-        Trombone trombone = new Trombone("Тромбон"," 94x31x29 см");
-       list2.add(trombone);
-        for(var l:list2) {
-            l.show();
-            l.desc();
-            l.sound();
-            l.history();
-            System.out.println("-------");
-        }
+//        System.out.println("************************");
+//        List<MusInstruments> list2= new ArrayList<MusInstruments>();
+//        Violin violin= new Violin("Скрипка","31.75 - 35,5 см");
+//        list2.add(violin);
+//        Cello cello= new Cello("Виолончель","51.0 - 69.5 см");
+//        list2.add(cello);
+//        Ukulele ukulele= new Ukulele("Укулеле","33.0 - 53 см");
+//        list2.add(ukulele);
+//        Trombone trombone = new Trombone("Тромбон"," 94x31x29 см");
+//       list2.add(trombone);
+//        for(var l:list2) {
+//            l.show();
+//            l.desc();
+//            l.sound();
+//            l.history();
+//            System.out.println("-------");
+//        }
+
+        myArray arr=new myArray(20);
+        arr.init(-5,15);
+        System.out.println(arr);
+        int number=0;
+        number=arr.max();
+        System.out.println("Макимальное значение массива: " + number);
+        number=arr.min();
+        System.out.println("Минимальное значение массива: " + number);
+       float number2=arr.avg();
+        System.out.println("Среднеарифметическое значение массива: " + number2);
     }
 }
