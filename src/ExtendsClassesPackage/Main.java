@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("************************");
-        List<Human> list = new ArrayList<Human>();
+        List<Human> list = new ArrayList<>();
         Builder builder= new Builder("Иван Иванов");
         list.add(builder);
         Sailor sailor=new Sailor("Петр Петров");
@@ -20,7 +20,7 @@ public class Main {
         }
 
         System.out.println("************************");
-        List<Animal> list2 = new ArrayList<Animal>();
+        List<Animal> list2 = new ArrayList<>();
         Crocodile croc= new Crocodile("Крокодил", 480);
         list2.add(croc);
         Tiger tiger=new Tiger("Тигр", 120);
@@ -40,7 +40,7 @@ public class Main {
         m.print();
 
         System.out.println("********************");
-        List<Facility> list4= new ArrayList<Facility>();
+        List<Facility> list4= new ArrayList<>();
         Kettle kettle=new Kettle("Bosh","bs3000","1.8l","1200v");
         list4.add(kettle);
         Auto auto=new Auto("VW","Toureg","универсал","3.0 V6 TDI");
@@ -57,7 +57,7 @@ public class Main {
         }
 
         System.out.println("************************");
-        List<MusInstruments> list3= new ArrayList<MusInstruments>();
+        List<MusInstruments> list3= new ArrayList<>();
         Violin violin= new Violin("Скрипка","31.75 - 35,5 см");
         list3.add(violin);
         Cello cello= new Cello("Виолончель","51.0 - 69.5 см");
@@ -86,8 +86,8 @@ public class Main {
        float number2=arr.avg();
         System.out.println("Среднеарифметическое значение массива: " + number2);
         arr.sortAsc();
-        System.out.println("сортировка по возрастанию" + arr);
+        System.out.println("сортировка по возрастанию " + arr);
         arr.sortDesc();
-        System.out.println("сортировка по убыванию" + arr);
+        System.out.println("сортировка по убыванию " + arr);
     }
 }

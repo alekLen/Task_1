@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 public class myArray implements IMath, ISort {
     public int[] array;
-    private int size=0;
+    private final int size;
     private final Random rand = new Random();
 
     public myArray(int size){
