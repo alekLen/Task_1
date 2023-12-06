@@ -2,8 +2,8 @@ package ExtendsClassesPackage;
 
 import java.util.Arrays;
 import java.util.Random;
-public class myArray implements IMath {
-    public final int[] array;
+public class myArray implements IMath, ISort {
+    public int[] array;
     private int size=0;
     private final Random rand = new Random();
 
@@ -19,7 +19,7 @@ public class myArray implements IMath {
 
     @Override
     public String toString() {
-        return  "myArray = " + Arrays.toString(array) ;
+        return  Arrays.toString(array) ;
     }
 
     @Override
@@ -50,5 +50,22 @@ public class myArray implements IMath {
         }
         number = number/size;
         return number;
+    }
+
+    @Override
+    public void sortAsc() {
+        Arrays.sort(array);
+    }
+
+    @Override
+    public void sortDesc() {
+        Arrays.sort(array);
+        int[] arraySecond = new int[size];
+        int j=0;
+        for (int i = size-1; i >= 0; i--) {
+            arraySecond[j] =array[i];
+            j++;
+        }
+        array = arraySecond;
     }
 }
