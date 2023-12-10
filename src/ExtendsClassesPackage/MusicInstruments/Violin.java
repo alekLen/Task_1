@@ -1,6 +1,8 @@
-package ExtendsClassesPackage;
+package ExtendsClassesPackage.MusicInstruments;
 
-public class Violin extends  MusInstruments {
+import ExtendsClassesPackage.MusicInstruments.MusInstruments;
+
+public class Violin extends MusInstruments {
 
     public Violin(String name,String size) {
         super.name = name;

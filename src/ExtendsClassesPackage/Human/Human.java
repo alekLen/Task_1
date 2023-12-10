@@ -1,4 +1,4 @@
-package ExtendsClassesPackage;
+package ExtendsClassesPackage.Human;
 
 public abstract class Human {
     protected String name;

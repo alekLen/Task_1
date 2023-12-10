@@ -1,6 +1,8 @@
-package ExtendsClassesPackage;
+package ExtendsClassesPackage.MusicInstruments;
 
-public class Cello  extends  MusInstruments {
+import ExtendsClassesPackage.MusicInstruments.MusInstruments;
+
+public class Cello  extends MusInstruments {
 
     public Cello(String name,String size) {
         super.name = name;

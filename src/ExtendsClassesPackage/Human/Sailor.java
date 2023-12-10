@@ -1,15 +1,15 @@
-package ExtendsClassesPackage;
+package ExtendsClassesPackage.Human;
 
-public class Pilot extends Human{
+import ExtendsClassesPackage.Human.Human;
 
-    public Pilot(String name) {
+public class Sailor extends Human {
+
+    public Sailor(String name) {
         super.name=name;
     }
 
-    public Pilot() {
-    }
     public String work(){
-        return "Я управляю самолетом!";
+        return "Я продавец!";
     }
     public String getName() {
         return super.name;
@@ -18,6 +18,5 @@ public class Pilot extends Human{
     public void setName(String name) {
         super.name=name;
     }
-
-
 }
+

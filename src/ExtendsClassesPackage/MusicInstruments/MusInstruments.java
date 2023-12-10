@@ -1,4 +1,4 @@
-package ExtendsClassesPackage;
+package ExtendsClassesPackage.MusicInstruments;
 
 public abstract class MusInstruments {
     protected String name;

@@ -1,6 +1,8 @@
-package ExtendsClassesPackage;
+package ExtendsClassesPackage.Money;
 
-public class Product extends Money{
+import ExtendsClassesPackage.Money.Money;
+
+public class Product extends Money {
      private String name = "";
     public Product(String name,int dollars, int cents) {
         super(dollars, cents);

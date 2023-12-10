@@ -1,4 +1,4 @@
-package ExtendsClassesPackage;
+package ExtendsClassesPackage.Money;
 
 public  class Money {
     private int dollars=0;

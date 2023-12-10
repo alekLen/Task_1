@@ -1,6 +1,8 @@
-package ExtendsClassesPackage;
+package ExtendsClassesPackage.Human;
 
-public class Builder extends Human{
+import ExtendsClassesPackage.Human.Human;
+
+public class Builder extends Human {
 
     public Builder(String name) {
         super.name=name;

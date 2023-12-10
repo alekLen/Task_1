@@ -1,6 +1,8 @@
-package ExtendsClassesPackage;
+package ExtendsClassesPackage.MusicInstruments;
 
-public class Ukulele  extends  MusInstruments {
+import ExtendsClassesPackage.MusicInstruments.MusInstruments;
+
+public class Ukulele  extends MusInstruments {
 
     public Ukulele(String name,String size) {
         super.name = name;

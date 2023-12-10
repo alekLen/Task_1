@@ -1,6 +1,8 @@
-package ExtendsClassesPackage;
+package ExtendsClassesPackage.Facility;
 
-public class Auto extends Facility{
+import ExtendsClassesPackage.Facility.Facility;
+
+public class Auto extends Facility {
 
     private String production;
     private String  type;

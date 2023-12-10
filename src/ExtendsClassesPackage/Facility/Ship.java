@@ -1,6 +1,8 @@
-package ExtendsClassesPackage;
+package ExtendsClassesPackage.Facility;
 
-public class Ship extends  Facility{
+import ExtendsClassesPackage.Facility.Facility;
+
+public class Ship extends Facility {
     private String production;
     private int numberOfPeople;
     public Ship(String name, int num) {

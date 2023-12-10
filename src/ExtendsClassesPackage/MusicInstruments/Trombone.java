@@ -1,6 +1,8 @@
-package ExtendsClassesPackage;
+package ExtendsClassesPackage.MusicInstruments;
 
-public class Trombone  extends  MusInstruments {
+import ExtendsClassesPackage.MusicInstruments.MusInstruments;
+
+public class Trombone  extends MusInstruments {
 
     public Trombone(String name,String size) {
         super.name = name;

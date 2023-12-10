@@ -1,4 +1,4 @@
-package ExtendsClassesPackage;
+package ExtendsClassesPackage.Facility;
 
 public abstract class Facility {
     protected String name;

@@ -1,4 +1,6 @@
-package ExtendsClassesPackage;
+package ExtendsClassesPackage.Animal;
+
+import ExtendsClassesPackage.Animal.Animal;
 
 public class Kangarro extends Animal {
 

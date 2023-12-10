@@ -1,4 +1,4 @@
-package ExtendsClassesPackage;
+package ExtendsClassesPackage.Array;
 
 public interface IMath {
     public int min();
