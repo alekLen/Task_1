@@ -1,9 +1,6 @@
 package Bank;
 
-import Bank.MyExeptions.AtmIsAlreadyFullOfMoneyBoxes;
-import Bank.MyExeptions.MinSummToGiveExeption;
-import Bank.MyExeptions.NotInafMoneyInBox;
-import Bank.MyExeptions.OutOfMaxSummOfMoneyBoxExeption;
+import Bank.MyExeptions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +10,7 @@ public class ATM {
 public List<MonyeBox> moneyBoxes = new ArrayList<>();
 
    private final int minSummOut;
-   private final int maxCountOut;
+   private final int maxSummOut;
    private final int maxNumberMoneyBoxes;
 
    private int currentSumm = 0;
@@ -21,7 +18,7 @@ public List<MonyeBox> moneyBoxes = new ArrayList<>();
    public ATM( int minSummOut, int maxSummOut,int maxNumberMoneyBoxes) {
 
       this.minSummOut = minSummOut;
-      this.maxCountOut = maxSummOut;
+      this.maxSummOut = maxSummOut;
        this.maxNumberMoneyBoxes=maxNumberMoneyBoxes;
    }
    public int countCurrentSumm(){
@@ -31,12 +28,20 @@ public List<MonyeBox> moneyBoxes = new ArrayList<>();
       }
       return res;
    }
-   public void addMoneyBox(int n1,int n2, int n3){
-       if(moneyBoxes.size() <= maxNumberMoneyBoxes) {
-           MonyeBox m = new MonyeBox(n1, n2, n3);
-           moneyBoxes.add(m);
-       }else{
-           throw new AtmIsAlreadyFullOfMoneyBoxes();
+   public void addMoneyBox(int nominal,int count, int maxCount){
+       try {
+           if (moneyBoxes.size() <= maxNumberMoneyBoxes) {
+               MonyeBox m = new MonyeBox(nominal, count, maxCount);
+               moneyBoxes.add(m);
+           } else {
+               throw new AtmIsAlreadyFullOfMoneyBoxes();
+           }
+       }
+       catch(NotCorrectNominalException e){
+           System.out.println("Контейнеp для денег не добавлен в банкомат:  " + e.getMessage());
+       }
+       catch(OutOfMaxSummOfMoneyBoxExeption e){
+           System.out.println("Контейнеp для денег не добавлен в банкомат:  " + e.getMessage());
        }
    }
 
@@ -49,10 +54,10 @@ public List<MonyeBox> moneyBoxes = new ArrayList<>();
          mb.setCount(newCount);
       }
    }
-   public void plusCount(int n1, MonyeBox mb) {
-      int newCount = mb.getCount()+n1;
-      if(newCount < mb.getMaxCount() ){
-         throw new OutOfMaxSummOfMoneyBoxExeption();
+   public void plusCount( MonyeBox mb,  int number) {
+      int newCount = mb.getCount() + 1;
+      if(newCount > mb.getMaxCount() ){
+         throw new MoneyBoxIsFullExeption(number);
       }
       else{
          mb.setCount(newCount);
@@ -63,36 +68,37 @@ public List<MonyeBox> moneyBoxes = new ArrayList<>();
           if( n < minSummOut){
             throw new MinSummToGiveExeption(minSummOut);
            }
+           else if( n > maxSummOut){
+               throw new MaxSummToGiveExeption(maxSummOut);
+           }
           else{
+              int takeSumm=0;
               int giveOutSumma = takeMoneyFromBox(n, 500);
-               giveOutSumma = takeMoneyFromBox(n - giveOutSumma, 200);
-               giveOutSumma = takeMoneyFromBox(n - giveOutSumma, 100);
-               giveOutSumma = takeMoneyFromBox(n - giveOutSumma, 50);
-               giveOutSumma = takeMoneyFromBox(n - giveOutSumma, 20);
-               giveOutSumma = takeMoneyFromBox(n - giveOutSumma, 10);
-               giveOutSumma = takeMoneyFromBox(n - giveOutSumma, 5);
-              giveOutSumma = takeMoneyFromBox(n - giveOutSumma, 2);
-              giveOutSumma = takeMoneyFromBox(n - giveOutSumma, 1);
-               if(giveOutSumma!=n){
-                   System.out.println("Возможно выдать только сумму:  " + giveOutSumma);
-                   System.out.println("Подтвердите выдачу этой суммы: нажмите 1");
-                   try{
-                       Scanner scanner = new Scanner(System.in);
-                      int choise= scanner.nextInt();
-                      if(choise==1){
-                          System.out.println("Заберите деньги в сумме: " + giveOutSumma);
-                      }
-                   }
-                   catch(Exception e) {
-                       System.out.println("Отмена операции!");
-                   }
-               }
-               else{
-                   System.out.println("Возьмите свои деньги в сумме:  " + giveOutSumma);
-               }
+              takeSumm += giveOutSumma;
+               giveOutSumma = takeMoneyFromBox(n - takeSumm, 200);
+              takeSumm += giveOutSumma;
+               giveOutSumma = takeMoneyFromBox(n - takeSumm, 100);
+              takeSumm += giveOutSumma;
+               giveOutSumma = takeMoneyFromBox(n - takeSumm, 50);
+              takeSumm += giveOutSumma;
+               giveOutSumma = takeMoneyFromBox(n - takeSumm, 20);
+              takeSumm += giveOutSumma;
+               giveOutSumma = takeMoneyFromBox(n - takeSumm, 10);
+              takeSumm += giveOutSumma;
+               giveOutSumma = takeMoneyFromBox(n - takeSumm, 5);
+              takeSumm += giveOutSumma;
+              giveOutSumma = takeMoneyFromBox(n - takeSumm, 2);
+              takeSumm += giveOutSumma;
+              giveOutSumma = takeMoneyFromBox(n - takeSumm, 1);
+              takeSumm += giveOutSumma;
+
+              printCheck(takeSumm,n);
           }
        }
        catch (MinSummToGiveExeption e){
+           System.out.println(e.getMessage());
+       }
+       catch (MaxSummToGiveExeption e){
            System.out.println(e.getMessage());
        }
    }
@@ -126,5 +132,89 @@ public List<MonyeBox> moneyBoxes = new ArrayList<>();
             }
         }
         return null;
+    }
+    private void printCheck(int summa, int wantedSumma){
+        if(summa != wantedSumma){
+            System.out.println("Возможно выдать только сумму:  " + summa);
+            System.out.println("Подтвердите выдачу этой суммы: нажмите 1");
+            try{
+                Scanner scanner = new Scanner(System.in);
+                int choise= scanner.nextInt();
+                if(choise==1){
+                    System.out.println("Заберите деньги в сумме: " + summa);
+                }
+            }
+            catch(Exception e) {
+                System.out.println("Отмена операции!");
+            }
+        }
+        else{
+            System.out.println("Возьмите свои деньги в сумме:  " + summa);
+        }
+    }
+    public void putInMoneyBox(int count,int nominal){
+       boolean success=true;
+        if(nominal ==1 ||nominal ==2 ||nominal ==5 ||nominal ==10 ||nominal ==20 ||
+                nominal ==50 ||nominal ==100 ||nominal ==200 ||nominal ==500){
+            int putSumma = 0;
+            if(count > 0){
+                 MonyeBox monyebox = findMoneyBox(nominal);
+                if (monyebox != null){
+                   boolean have = true;
+                   int numberCoupure = 0;
+                   while(count > 0 && have) {
+                    try {
+                        plusCount(monyebox,numberCoupure);
+                        numberCoupure++;
+                        count--;
+                    } catch (MoneyBoxIsFullExeption e) {
+                        numberCoupure=e.getCount();
+                        have=false;
+                        success=false;
+                    }
+                }
+                   if( success) {
+                       putSumma += numberCoupure * nominal;
+                       System.out.println("вы положили сумму:  " + putSumma);
+                   }else{
+                       putSumma += numberCoupure * nominal;
+                       System.out.println("Вы можете положить только сумму:  " + putSumma );
+                       System.out.println("Подтвердить операцию - нажмите 1");
+                       try{
+                           Scanner scanner = new Scanner(System.in);
+                           int choise= scanner.nextInt();
+                           if(choise==1){
+                               int change = count * nominal;
+                               System.out.println("Вы положили деньги в сумме: " + putSumma);
+                               System.out.println("Заберите сдачу в сумме: " + change);
+                           }
+                           else{
+                               System.out.println("Отмена операции! Заберите деньги в сумме: "+ count * nominal );
+                           }
+                       }
+                       catch(Exception e) {
+                           System.out.println("Отмена операции! Заберите деньги в сумме: "+ count * nominal );
+                       }
+                   }
+            }
+            else{
+                System.out.println("банкомат не может принять такие купюры");
+            }
+        }
+        else{
+            System.out.println("Вы не загрузили деньги в банкомат");
+        }
+        }else{
+            throw new NotCorrectNominalException();
+        }
+    }
+    public void printCurrentSummByNomenal(){
+        for (var mb : moneyBoxes ) {
+            System.out.println(mb.getNominal() +" * "+ mb.getCount() +" = "+ mb.getCount()*mb.getNominal());
+        }
+    }
+    public void statisticAtm(){
+        printCurrentSummByNomenal();
+        System.out.println("Итого в банкомате:  " + countCurrentSumm());
     }
 }

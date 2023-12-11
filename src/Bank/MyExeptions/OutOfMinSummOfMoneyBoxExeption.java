@@ -5,5 +5,4 @@ public class OutOfMinSummOfMoneyBoxExeption  extends RuntimeException{
     public String getMessage() {
         return "Недостаточно денег";
     }
-
 }

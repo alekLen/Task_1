@@ -9,19 +9,20 @@ public class MonyeBox {
     private int count;
     private int maxCount;
 
-    //При создании объекта: n1-номинал купюр, n2- количество купюр, n3- максимальное количество вместимости купюр
-    public MonyeBox(int n1,int n2,int  n3){
-        if(n1 ==1 ||n1 ==2 ||n1 ==5 ||n1 ==10 ||n1 ==20 ||
-        n1 ==50 ||n1 ==100 ||n1 ==200 ||n1 ==500){
-            nominal=n1;
+    //При создании объекта: nominal-номинал купюр, count- количество купюр,
+    // maxCount- максимальное количество вместимости купюр
+    public MonyeBox(int nominal,int count,int  maxCount){
+        if(nominal ==1 ||nominal ==2 ||nominal ==5 ||nominal ==10 ||nominal ==20 ||
+                nominal ==50 ||nominal ==100 ||nominal ==200 ||nominal ==500){
+            this.nominal=nominal;
         }else{
            throw new NotCorrectNominalException();
         }
-        if(n2 <0 || n2 > n3){
+        if(count <0 || count > maxCount){
             throw new OutOfMaxSummOfMoneyBoxExeption();
         }else{
-            count = n2;
-            maxCount = n3;
+            this.count = count;
+            this.maxCount = maxCount;
         }
        }
 
