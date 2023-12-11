@@ -1,10 +1,9 @@
 package Bank;
 
+import Bank.MyExeptions.AtmIsAlreadyFullOfMoneyBoxes;
 import Bank.MyExeptions.MinSummToGiveExeption;
 import Bank.MyExeptions.NotInafMoneyInBox;
 import Bank.MyExeptions.OutOfMaxSummOfMoneyBoxExeption;
-import Bank.MyExeptions.OutOfMinSummOfMoneyBoxExeption;
-import Bank.MyExeptions.OnlyHaveSummaInBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,25 +12,32 @@ import java.util.Scanner;
 public class ATM {
 public List<MonyeBox> moneyBoxes = new ArrayList<>();
 
-   public int minSummOut;
-   public int maxCountOut;
- public int currentSumm;
+   private final int minSummOut;
+   private final int maxCountOut;
+   private final int maxNumberMoneyBoxes;
 
-   public ATM( int minSummOut, int maxSummOut) {
+   private int currentSumm = 0;
+
+   public ATM( int minSummOut, int maxSummOut,int maxNumberMoneyBoxes) {
 
       this.minSummOut = minSummOut;
       this.maxCountOut = maxSummOut;
+       this.maxNumberMoneyBoxes=maxNumberMoneyBoxes;
    }
-   private void countCurrentSumm(){
+   public int countCurrentSumm(){
       int res = 0;
       for (var m :moneyBoxes ) {
          res += (m.getCount()*m.getNominal());
       }
-      currentSumm = res;
+      return res;
    }
    public void addMoneyBox(int n1,int n2, int n3){
-      MonyeBox m=new MonyeBox(n1,n2,n3);
-      moneyBoxes.add(m);
+       if(moneyBoxes.size() <= maxNumberMoneyBoxes) {
+           MonyeBox m = new MonyeBox(n1, n2, n3);
+           moneyBoxes.add(m);
+       }else{
+           throw new AtmIsAlreadyFullOfMoneyBoxes();
+       }
    }
 
    public void minusCount( MonyeBox mb, int number) {
@@ -65,6 +71,8 @@ public List<MonyeBox> moneyBoxes = new ArrayList<>();
                giveOutSumma = takeMoneyFromBox(n - giveOutSumma, 20);
                giveOutSumma = takeMoneyFromBox(n - giveOutSumma, 10);
                giveOutSumma = takeMoneyFromBox(n - giveOutSumma, 5);
+              giveOutSumma = takeMoneyFromBox(n - giveOutSumma, 2);
+              giveOutSumma = takeMoneyFromBox(n - giveOutSumma, 1);
                if(giveOutSumma!=n){
                    System.out.println("Возможно выдать только сумму:  " + giveOutSumma);
                    System.out.println("Подтвердите выдачу этой суммы: нажмите 1");

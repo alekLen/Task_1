@@ -1,7 +1,7 @@
 package Bank.MyExeptions;
 
 public class NotInafMoneyInBox  extends RuntimeException{
-    private int count;
+    private final int count;
     public NotInafMoneyInBox(int number) {
         count=number;
     }

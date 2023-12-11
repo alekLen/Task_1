@@ -8,6 +8,8 @@ public class MonyeBox {
     private int nominal;
     private int count;
     private int maxCount;
+
+    //При создании объекта: n1-номинал купюр, n2- количество купюр, n3- максимальное количество вместимости купюр
     public MonyeBox(int n1,int n2,int  n3){
         if(n1 ==1 ||n1 ==2 ||n1 ==5 ||n1 ==10 ||n1 ==20 ||
         n1 ==50 ||n1 ==100 ||n1 ==200 ||n1 ==500){
