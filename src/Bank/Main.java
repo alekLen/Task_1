@@ -5,7 +5,8 @@ import Bank.MyExeptions.ExceptionOfCreatingBank;
 public class Main {
     public static void main(String[] args) {
 try {
-    Bank bank = new Bank(2, 2300325, 1000, 20000);
+   Bank bank = new Bank(3, 2300325, 1000, 20000);
+  //  Bank bank = new Bank(2, 800000, 1000, 20000);
     int c=bank.getCountAtm();
     System.out.println("Создан банк. Создано  "+ c +" банкомата");
     int summa = bank.CurentSummInAllAtms();
@@ -26,6 +27,9 @@ try {
     bank.list.get(1).putInMoneyBox(320,500);
         summa = bank.CurentSummInAllAtms();
         System.out.println("Общая сумма в банке:  " + summa);
+    bank.list.get(1).putInMoneyBox(20,50);
+    summa = bank.CurentSummInAllAtms();
+    System.out.println("Общая сумма в банке:  " + summa);
 
 }
 catch(ExceptionOfCreatingBank e) {

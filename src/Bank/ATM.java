@@ -155,6 +155,7 @@ public List<MonyeBox> moneyBoxes = new ArrayList<>();
         }
     }
     public void putInMoneyBox(int count,int nominal){
+       int summa=count*nominal;
        boolean success=true;
         if(nominal ==1 ||nominal ==2 ||nominal ==5 ||nominal ==10 ||nominal ==20 ||
                 nominal ==50 ||nominal ==100 ||nominal ==200 ||nominal ==500){
@@ -191,11 +192,15 @@ public List<MonyeBox> moneyBoxes = new ArrayList<>();
                                System.out.println("Заберите сдачу в сумме: " + change);
                            }
                            else{
-                               System.out.println("Отмена операции! Заберите деньги в сумме: "+ count * nominal );
+                               int coun=monyebox.getCount();
+                              monyebox.setCount(coun-numberCoupure);
+                               System.out.println("Отмена операции! Заберите деньги в сумме: "+ summa);
                            }
                        }
                        catch(Exception e) {
-                           System.out.println("Отмена операции! Заберите деньги в сумме: "+ count * nominal );
+                           int coun=monyebox.getCount();
+                           monyebox.setCount(coun-numberCoupure);
+                           System.out.println("Отмена операции! Заберите деньги в сумме: "+ summa);
                        }
                    }
             }

@@ -49,24 +49,24 @@ public void createAtm( int summa,int min,int max){
         return list.size();
    }
     public void createMoneyBoxesToAtmType1(ATM atm1,int summa){
-        int mainSumma = summa;
-        int summa1=summa;
+
+
         int dopSumma=0;
         int lessSumm=summa;
 
-        int summ=summa1*62/100;
+        int summ=summa*62/100;
         summ=checkSumm(summ,lessSumm);
         int putSumma1= addMonyeBox500( atm1,summ);
         dopSumma=summ-putSumma1;
         lessSumm -= putSumma1;
 
-        summ= summa1*25/100 + dopSumma;
+        summ= summa*25/100 + dopSumma;
         summ=checkSumm(summ,lessSumm);
         int putSumma2= addMonyeBox200( atm1,summ);
         dopSumma =summ-putSumma2;
         lessSumm -= putSumma2;
 
-        summ= summ-putSumma2-putSumma1 + dopSumma;
+        summ= summa-putSumma2-putSumma1 + dopSumma;
         summ=checkSumm(summ,lessSumm);
         int putSumma3= addMonyeBox100( atm1,summ);
         dopSumma = summ-putSumma3;
@@ -76,13 +76,12 @@ public void createAtm( int summa,int min,int max){
         }
     }
     public void createMoneyBoxesToAtmType2(ATM atm1,int summa){
-        int mainSumma=summa;
-        int summa1=summa;
+        int summa1 = summa;
         int dopSumma=0;
         int lessSumm=summa;
 
         int summ=summa1*64/100;
-        summ=checkSumm(summ,lessSumm);
+        summ = checkSumm(summ,lessSumm);
         int putSumma1= addMonyeBox500( atm1,summ);
         dopSumma=summ-putSumma1;
         lessSumm -= putSumma1;
@@ -106,31 +105,31 @@ public void createAtm( int summa,int min,int max){
         dopSumma=summ-putSumma4;
         lessSumm -= putSumma4;
 
-        summ = mainSumma-putSumma1-putSumma2-putSumma3-putSumma4 + dopSumma;
+        summ = summa1-putSumma1-putSumma2-putSumma3-putSumma4 + dopSumma;
         summ=checkSumm(summ,lessSumm);
         int putSumma5= addMonyeBox20( atm1,summ);
         dopSumma=summ-putSumma5;
         lessSumm -= putSumma5;
 
-        summ = mainSumma-putSumma1-putSumma2-putSumma3-putSumma4-putSumma5 + dopSumma;
+        summ = summa1-putSumma1-putSumma2-putSumma3-putSumma4-putSumma5 + dopSumma;
         summ=checkSumm(summ,lessSumm);
         int putSumma6= addMonyeBox10( atm1,summ);
         dopSumma=summ-putSumma6;
         lessSumm -= putSumma6;
 
-        summ = mainSumma-putSumma1-putSumma2-putSumma3-putSumma4-putSumma5-putSumma6 + dopSumma;
+        summ = summa1-putSumma1-putSumma2-putSumma3-putSumma4-putSumma5-putSumma6 + dopSumma;
         summ=checkSumm(summ,lessSumm);
         int putSumma7= addMonyeBox5( atm1,summ);
         dopSumma=summ-putSumma7;
         lessSumm -= putSumma7;
 
-        summ = mainSumma-putSumma1-putSumma2-putSumma3-putSumma4-putSumma5-putSumma6-putSumma7 + dopSumma;
+        summ = summa1-putSumma1-putSumma2-putSumma3-putSumma4-putSumma5-putSumma6-putSumma7 + dopSumma;
         summ=checkSumm(summ,lessSumm);
         int putSumma8= addMonyeBox2( atm1,summ);
         dopSumma=summ-putSumma8;
         lessSumm -= putSumma8;
 
-        summ = mainSumma-putSumma1-putSumma2-putSumma3-putSumma4-putSumma5-putSumma6-putSumma7-putSumma8 + dopSumma;
+        summ = summa1-putSumma1-putSumma2-putSumma3-putSumma4-putSumma5-putSumma6-putSumma7-putSumma8 + dopSumma;
         summ=checkSumm(summ,lessSumm);
         int putSumma9= addMonyeBox1( atm1,summ);
         dopSumma=summ-putSumma9;
@@ -238,15 +237,15 @@ public void createAtm( int summa,int min,int max){
         }
     }
     public int addMonyeBox1(ATM atm1,int summa){
-        int count1=summa/1;
+        int count1=summa;
         try{
             atm1.addMoneyBox(1, count1);
-            return count1*1;
+            return count1;
         }
         catch(Exception e){
             count1=1000;
             atm1.addMoneyBox(1, count1);
-            return count1*1;
+            return count1;
         }
     }
     public int checkSumm(int summ,int summ2){
