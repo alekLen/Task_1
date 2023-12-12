@@ -5,13 +5,13 @@ import Bank.MyExeptions.OutOfMaxSummOfMoneyBoxExeption;
 import Bank.MyExeptions.OutOfMinSummOfMoneyBoxExeption;
 
 public class MonyeBox {
-    private int nominal;
+    private final int nominal;
     private int count;
-    private int maxCount;
+    private final int maxCount=1000 ;
 
     //При создании объекта: nominal-номинал купюр, count- количество купюр,
     // maxCount- максимальное количество вместимости купюр
-    public MonyeBox(int nominal,int count,int  maxCount){
+    public MonyeBox(int nominal,int count){
         if(nominal ==1 ||nominal ==2 ||nominal ==5 ||nominal ==10 ||nominal ==20 ||
                 nominal ==50 ||nominal ==100 ||nominal ==200 ||nominal ==500){
             this.nominal=nominal;
@@ -22,7 +22,6 @@ public class MonyeBox {
             throw new OutOfMaxSummOfMoneyBoxExeption();
         }else{
             this.count = count;
-            this.maxCount = maxCount;
         }
        }
 

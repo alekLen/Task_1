@@ -11,15 +11,15 @@ public List<MonyeBox> moneyBoxes = new ArrayList<>();
 
    private final int minSummOut;
    private final int maxSummOut;
-   private final int maxNumberMoneyBoxes;
+   private final int maxNumberMoneyBoxes = 9;
 
    private int currentSumm = 0;
 
-   public ATM( int minSummOut, int maxSummOut,int maxNumberMoneyBoxes) {
+   public ATM( int minSummOut, int maxSummOut) {
 
       this.minSummOut = minSummOut;
       this.maxSummOut = maxSummOut;
-       this.maxNumberMoneyBoxes=maxNumberMoneyBoxes;
+
    }
    public int countCurrentSumm(){
       int res = 0;
@@ -28,20 +28,22 @@ public List<MonyeBox> moneyBoxes = new ArrayList<>();
       }
       return res;
    }
-   public void addMoneyBox(int nominal,int count, int maxCount){
+   public void addMoneyBox(int nominal,int count){
        try {
            if (moneyBoxes.size() <= maxNumberMoneyBoxes) {
-               MonyeBox m = new MonyeBox(nominal, count, maxCount);
+               MonyeBox m = new MonyeBox(nominal, count);
                moneyBoxes.add(m);
            } else {
-               throw new AtmIsAlreadyFullOfMoneyBoxes();
+               throw new AtmIsAlreadyFullOfMoneyBoxes(0);
            }
        }
        catch(NotCorrectNominalException e){
-           System.out.println("Контейнеp для денег не добавлен в банкомат:  " + e.getMessage());
+          // System.out.println("Контейнеp"+nominal+" для денег не добавлен в банкомат:  " + e.getMessage());
+           throw e;
        }
        catch(OutOfMaxSummOfMoneyBoxExeption e){
-           System.out.println("Контейнеp для денег не добавлен в банкомат:  " + e.getMessage());
+           //System.out.println("Контейнеp"+nominal+"  для денег не добавлен в банкомат:  " + e.getMessage());
+           throw e;
        }
    }
 
