@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ATM {
-public List<MonyeBox> moneyBoxes = new ArrayList<>();
+private List<MonyeBox> moneyBoxes = new ArrayList<>();
 
    private final int minSummOut;
    private final int maxSummOut;

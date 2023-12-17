@@ -10,7 +10,7 @@ public class Bank {
    private final int countAtms;
     public List<ATM> list= new ArrayList<>();
     public Bank(int number,int summa,int min,int max){
-        countAtms=number;
+        countAtms = number;
         int summ=summa/number;
         try {
             for (int index = 0; index < number - 1; index++) {
