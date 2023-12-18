@@ -1,23 +1,47 @@
 package InnerClasses;
 
-public class GameConsole {
+
+public class GameConsole implements Powered {
     private final Brand brand;
     private String model;
     private final String serial;
-    public class Gamepad{
+    private int waitingCounter = 0;
+    public class Gamepad implements Powered{
         private final Brand brand;
         private final String consoleSerial;
-        private final int connectedNumber;
+        private  int connectedNumber;
         private  Color color;
         private double chargeLevel = 100.0;
         private boolean isOn;
 
-        public Gamepad(Brand brand, int connectedNumber) {
+        public Gamepad(Brand brand, int connectedNumber)  {
             this.brand = brand;
             this.connectedNumber = connectedNumber;
             consoleSerial = serial;
         }
-
+        public void powerOn(){
+            if (chargeLevel == 0) {
+                System.out.println("Джойстик номер "+connectedNumber+"  не может быть включен заряд= "+chargeLevel+'%');
+            }else {
+                isOn = true;
+                System.out.println("Джойстик номер "+connectedNumber+"  включился заряд= "+chargeLevel+'%');
+                setOn(true);
+                if (!firstGamepad.isOn()) {
+                    secondGamepad.connectedNumber = 1;
+                    System.out.println("Первый джойстик отключен, второй джойстик становится первым");
+                } else {
+                    firstGamepad.connectedNumber = 1;
+                    secondGamepad.connectedNumber = 2;
+                }
+            }
+        }
+        public void powerOff(){
+            isOn=false;
+            if(this==firstGamepad){
+                secondGamepad.connectedNumber=1;
+            }
+            System.out.println("Джойстик номер "+connectedNumber+"  отключился");;
+        }
         public void setColor(Color color) {
             this.color = color;
         }
@@ -26,9 +50,6 @@ public class GameConsole {
             this.chargeLevel = chargeLevel;
         }
 
-        public void setOn(boolean on) {
-            isOn = on;
-        }
 
         public Brand getBrand() {
             return brand;
@@ -85,6 +106,15 @@ public static class GameDisk{
         data=new Game(name,genre,Type.PHYSICAL);
     }
 
+    @Override
+    public String toString() {
+        return "GameDisk{" +
+                "name=" + data.name +
+                ", genre=" + data.genre +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
     public String getDescription() {
         return description;
     }
@@ -107,6 +137,14 @@ public static class GameDisk{
                 } else {
                     System.out.println("Рейтинг должен быть от 0 до 5");
                 }
+            }
+
+            @Override
+            public String toString() {
+                return "VirtualGame{" +
+                        "name=" + data.name +
+                        ", rating=" + rating +
+                        '}';
             }
 
             public int getRating() {
@@ -134,6 +172,56 @@ public static class GameDisk{
         public Type getType() {
             return type;
         }
+    }
+    private Game activeGame;
+    public void loadGame(Game game)
+    {
+        activeGame = game;
+        System.out.println("Игра: "+game.name+"  загружается!" );
+    }
+    public void playGame(){
+        System.out.println("*** Играем в игру: "+activeGame.name );
+        if (firstGamepad.isOn){
+            System.out.println("   Джойстик номер "+firstGamepad.connectedNumber+" включен и заряжен на "+firstGamepad.chargeLevel+'%');
+        }
+        if (secondGamepad.isOn){
+            System.out.println("   Джойстик номер "+secondGamepad.connectedNumber+" включен и заряжен на "+secondGamepad.chargeLevel+'%');
+        }
+        if(!firstGamepad.isOn && !secondGamepad.isOn){
+            System.out.println("   Джойстики отключены");
+        }
+        checkStatus();
+        changePower(firstGamepad);
+        changePower(secondGamepad);
+    }
+    private void changePower(Gamepad gp){
+        if (gp.isOn) {
+            gp.setChargeLevel(gp.getChargeLevel() - 10);
+            if (gp.getChargeLevel() == 0) {
+                gp.isOn = false;
+                System.out.println("Джойстик номер "+gp.connectedNumber+" полностью разрядился");
+            }
+        }
+    }
+    private void checkStatus(){
+        if(!firstGamepad.isOn && !secondGamepad.isOn){
+            System.out.println("Подключите джойстик!");
+            waitingCounter++;
+        }
+        else{
+            waitingCounter=0;
+        }
+        if(waitingCounter==5){
+            isOn=false;
+            waitingCounter=0;
+            throw new ToLongNoActivity();
+        }
+    }
+    public void powerOn(){
+        isOn=true;
+    }
+    public void powerOff(){
+        isOn=false;
     }
     public void setModel(String model) {
         this.model = model;
