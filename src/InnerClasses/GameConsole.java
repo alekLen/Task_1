@@ -25,7 +25,9 @@ public class GameConsole implements Powered {
             }else {
                 isOn = true;
                 System.out.println("Джойстик номер "+connectedNumber+"  включился заряд= "+chargeLevel+'%');
-                setOn(true);
+                if(!getOn()) {
+                    setOn(true);
+                }
                 if (!firstGamepad.isOn()) {
                     secondGamepad.connectedNumber = 1;
                     System.out.println("Первый джойстик отключен, второй джойстик становится первым");
@@ -176,10 +178,16 @@ public static class GameDisk{
     private Game activeGame;
     public void loadGame(Game game)
     {
+        if(isOn){
         activeGame = game;
         System.out.println("Игра: "+game.name+"  загружается!" );
+        }
+        else{
+            System.out.println("Включите приставку!");
+        }
     }
     public void playGame(){
+        if(isOn){
         System.out.println("*** Играем в игру: "+activeGame.name );
         if (firstGamepad.isOn){
             System.out.println("   Джойстик номер "+firstGamepad.connectedNumber+" включен и заряжен на "+firstGamepad.chargeLevel+'%');
@@ -193,6 +201,11 @@ public static class GameDisk{
         checkStatus();
         changePower(firstGamepad);
         changePower(secondGamepad);
+        }
+        else{
+            System.out.println("Включите приставку!");
+        }
+
     }
     private void changePower(Gamepad gp){
         if (gp.isOn) {
@@ -214,21 +227,25 @@ public static class GameDisk{
         if(waitingCounter==5){
             isOn=false;
             waitingCounter=0;
+            powerOff();
             throw new ToLongNoActivity();
         }
     }
     public void powerOn(){
         isOn=true;
+        System.out.println("--Приставка включилась--");
     }
     public void powerOff(){
         isOn=false;
+        System.out.println("--Приставка выключилась--");
     }
     public void setModel(String model) {
         this.model = model;
     }
 
-    public void setOn(boolean on) {
+    private void setOn(boolean on) {
         isOn = on;
+        System.out.println("--Приставка включилась при включении джойстика--");
     }
 
     public Brand getBrand() {
@@ -251,7 +268,7 @@ public static class GameDisk{
         return firstGamepad;
     }
 
-    public boolean isOn() {
+    public boolean getOn() {
         return isOn;
     }
 }

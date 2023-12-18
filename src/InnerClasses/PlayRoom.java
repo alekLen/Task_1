@@ -51,6 +51,7 @@ public class PlayRoom {
         try{
             gameConsole.loadGame(diskList.get(1).getData());
             gameConsole.powerOn();
+            gameConsole.loadGame(diskList.get(1).getData());
             gameConsole.getFirstGamepad().powerOn();
             gameConsole.playGame();
             gameConsole.playGame();
